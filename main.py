@@ -1,5 +1,4 @@
 #pip install pyqt6 pyqt6-tools
-
 from PyQt6 import QtWidgets, uic
 import sys
 from controller import MainController
