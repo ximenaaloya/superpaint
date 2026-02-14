@@ -81,17 +81,52 @@ class Canvas(QWidget):
         self.update()
     def draw_star(self, value):
         with QPainter(self.image) as painter:
-            painter.setPen(QPen(QColor("#f00"),1,Qt.PenStyle.SolidLine, Qt.PenCapStyle.RoundCap, Qt.PenJoinStyle.RoundJoin))
+            self.clear()
+            painter.setPen(QPen(QColor("#ff0000"),1,Qt.PenStyle.SolidLine, Qt.PenCapStyle.RoundCap, Qt.PenJoinStyle.RoundJoin))
             w = self.image.width()
             h = self.image.height()
-            div = int(w/int(value)) #600/10
-            self.clear()
             mid_w = w // 2
             mid_h = h // 2
+            div = int(mid_w/int(value)) #600/30
             painter.drawLine( mid_h, 0, mid_w, h )
             painter.drawLine( 0, mid_h, w, mid_h )
-            for x in range (1, div):
-                painter.drawLine(mid_w, div * x, (mid_h + div), mid_h)
-        self.update()
+            for x in range (0, value):
+               painter.drawLine(mid_w, div * x, (mid_w + (div * x)), mid_h)
+               painter.drawLine(mid_w, div * x, (mid_w - (div * x)), mid_h)
+               painter.drawLine(mid_w, h - div * x, (mid_w + (div * x)), mid_h)
+               painter.drawLine(mid_w, h - div * x, (mid_w - (div * x)), mid_h)
+    def draw_flower(self, value):
+        with QPainter(self.image) as painter:
+            self.clear()
+            painter.setPen(QPen(QColor("#ff0000"),1,Qt.PenStyle.SolidLine, Qt.PenCapStyle.RoundCap, Qt.PenJoinStyle.RoundJoin))
+            w = self.image.width()
+            h = self.image.height()
+            mid_w = w // 2
+            mid_h = h // 2
+            div = int(mid_w/int(value)) #600/30
+            painter.drawLine( mid_h, 0, mid_w, h )
+            painter.drawLine( 0, mid_h, w, mid_h )
+            for x in range (0, value):
+                painter.drawLine(div*x, 0, mid_w, div*x)
+                painter.drawLine(0, div*x, )
+
+    def draw_keyboard(self,value):
+        with QPainter(self.image) as painter:
+            self.clear()
+            painter.setPen(QPen(QColor("#ff0000"),1,Qt.PenStyle.SolidLine, Qt.PenCapStyle.RoundCap, Qt.PenJoinStyle.RoundJoin))
+            w = self.image.width()
+            h = self.image.width()
+            for x in range(1,value):
+                painter.setPen(Qt.PenStyle.NoPen)
+                #dibuja el cuadro blanco
+                painter.setBrush('#FFF')
+                rect = QRectF(10,10,30,30)
+                painter.drawRect(rect)
+
+                #dibuja el cuadro negro
+                painter.setBrush('#000')
+                rect2 = QRectF(40,10,30,30)
+                painter.drawRect(rect2)
+            self.update()
 
 

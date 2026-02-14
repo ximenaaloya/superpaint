@@ -4,7 +4,7 @@ class MainController:
         self.main_window = main_window
         self.ui = ui
         self.canvas = ui.widget
-        self.ui.comboDibujos.addItems(["","Cuadrícula","Estrella"])
+        self.ui.comboDibujos.addItems(["","Cuadrícula","Estrella","Flor","Tablero"])
         self.connect_signals()
         
 
@@ -25,6 +25,10 @@ class MainController:
             self.canvas.draw_grid(width)
         elif figura == "Estrella":
             self.canvas.draw_star(width)
+        elif figura == "Flor":
+            self.canvas.draw_flower(width)
+        elif figura == "Tablero":
+            self.canvas.draw_keyboard(width)
         else:
             print("Sin selección")
 
